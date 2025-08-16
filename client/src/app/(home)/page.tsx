@@ -2,12 +2,6 @@
 
 import Image from "next/image";
 import { useEffect } from "react";
-import KitchenIcon from "@/src/assets/kitchen.svg";
-import LoftIcon from "@/src/assets/loft-conversions.svg";
-import BathroomIcon from "@/src/assets/bathroom.svg";
-import ExtensionIcon from "@/src/assets/extension.svg";
-import ExternalWorksIcon from "@/src/assets/external-works.svg";
-import RestorationIcon from "@/src/assets/restoration.svg";
 
 type Stat = { label: string; value: string; note?: string };
 type Service = { key: string; title: string; icon: string; content: string };
@@ -39,7 +33,7 @@ const services: Service[] = [
     title: "Bathrooms",
     icon: "/assets/bathroom.svg",
     content:
-      "From compact ensuites to spa-like retreats, we fit high‑quality fixtures and finishes with precision waterproofing and ventilation.",
+      "From compact ensuites to spa-like retreats, we fit high quality fixtures and finishes with precision waterproofing and ventilation.",
   },
   {
     key: "extension",
@@ -58,7 +52,7 @@ const services: Service[] = [
   {
     key: "restoration",
     title: "Restorations",
-    icon: "/assets/restoration.svg",
+    icon: "/assets/Restoration.svg",
     content:
       "Careful restoration work that respects original character while improving longevity and function.",
   },
@@ -87,16 +81,21 @@ export default function Home() {
   useRevealOnScroll();
   return (
     <main className="min-h-screen bg-white text-neutral-900">
-      {/* NAV + HERO */}
       <section className="bg-neutral-900 text-white">
-        <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
+        {/* Header */}
+        <div className="mx-auto max-w-[1060px] px-6 py-5 flex items-center justify-between">
           <div className="reveal" data-show>
-            <span className="inline-flex items-center gap-2 text-sm font-medium">
-              <span className="size-2 rounded-full bg-emerald-400"></span>
-              LifetimeArt
+            <span className="inline-flex items-center rounded-full bg-white/5 ring-1 ring-white/10 px-2.5 py-1">
+              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/10 text-white/90">
+                ✷
+              </span>
+              <span className="ml-2 text-sm font-medium tracking-wide">
+                LifetimeArt
+              </span>
             </span>
           </div>
-          <nav className="hidden md:flex gap-8 text-sm">
+
+          <nav className="hidden md:flex gap-6 text-sm">
             {[
               ["About", "#about"],
               ["Services", "#services"],
@@ -107,7 +106,7 @@ export default function Home() {
               <a
                 key={label}
                 href={href}
-                className="underline-hover opacity-90 hover:opacity-100"
+                className="underline-hover text-white/80 hover:text-white"
               >
                 {label}
               </a>
@@ -115,26 +114,37 @@ export default function Home() {
           </nav>
         </div>
 
-        <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-2 gap-12 py-16 md:py-24 items-center">
-          <div className="space-y-6">
-            <span className="reveal inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/80">
-              <span className="size-1.5 rounded-full bg-emerald-400"></span>
+        {/* Hero */}
+        <div className="mx-auto max-w-[1060px] px-6 grid md:grid-cols-2 gap-12 py-16 md:py-24 items-center">
+          <div className="space-y-8">
+            <span className="reveal inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-white/15 px-3 py-1 text-xs text-white/85">
+              <span className="size-2 rounded-full bg-white ring-2 ring-black/30" />
               Available for work
             </span>
-            <h1 className="reveal text-4xl md:text-5xl font-semibold leading-tight">
-              Your trusted partner for quality home improvement
+
+            {/* Big headline (no underline) */}
+            <h1 className="reveal tracking-tight leading-tight text-3xl md:text-5xl">
+              Your trusted partner
+              <br />
+              for quality home
+              <br />
+              improvement
             </h1>
-            <p className="reveal text-white/80 max-w-prose">
+
+            <p className="reveal text-white/80 text-lg leading-relaxed max-w-[55ch]">
               LifetimeArt delivers expert home improvements, creating beautiful
               and functional spaces with quality craftsmanship.
             </p>
+
             <div className="reveal">
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 rounded-md bg-white text-neutral-900 px-4 py-2 text-sm font-medium shadow hover:translate-x-0.5 hover:-translate-y-0.5 transition-transform"
+                className="group inline-flex items-center gap-4 rounded-full bg-white/10 ring-1 ring-white/15 px-4 py-2 md:px-6 md:py-3 text-sm md:text-base text-white hover:bg-white/15 transition-colors"
               >
-                Get in touch
-                <span aria-hidden>→</span>
+                <span className="font-medium">Work with us</span>
+                <span className="inline-flex items-center justify-center rounded-full bg-white text-neutral-900 size-9 md:size-10 shadow-sm transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                  ↗
+                </span>
               </a>
             </div>
           </div>
@@ -142,11 +152,11 @@ export default function Home() {
           <div className="reveal md:justify-self-end">
             <div className="relative rounded-lg overflow-hidden ring-1 ring-white/15 bg-white/5 p-6">
               <Image
-                src="/window.svg"
+                src="/assets/image.svg"
                 alt="Home interior"
                 width={520}
                 height={420}
-                className="mx-auto h-auto w-full max-w-[520px]"
+                className="h-auto w-full max-w-[520px]"
                 priority
               />
             </div>
@@ -173,33 +183,78 @@ export default function Home() {
         </div>
 
         {/* Image strip to mirror the design */}
-        <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
-          {["/file.svg", "/window.svg", "/file.svg", "/window.svg"].map(
-            (src, i) => (
-              <div
-                key={i}
-                className="reveal rounded-xl overflow-hidden border bg-neutral-50"
-              >
-                <Image
-                  src={src}
-                  alt="About preview"
-                  width={320}
-                  height={240}
-                  className="w-full h-auto"
-                />
-              </div>
-            )
-          )}
+        <div className="mt-10 grid grid-cols-2 md:grid-cols-5 gap-4">
+          <div className="reveal rounded-xl overflow-hidden border bg-neutral-50">
+            <div className="relative h-48 sm:h-56 md:h-60 lg:h-64">
+              <Image
+                src="/assets/item.png"
+                alt="Living room artwork"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 20vw, (min-width: 768px) 50vw, 50vw"
+              />
+            </div>
+          </div>
+          <div className="reveal rounded-xl overflow-hidden border bg-neutral-50">
+            <div className="relative h-48 sm:h-56 md:h-60 lg:h-64">
+              <Image
+                src="/assets/item2.png"
+                alt="Cozy armchair"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 20vw, (min-width: 768px) 50vw, 50vw"
+              />
+            </div>
+          </div>
+          <div className="reveal rounded-xl overflow-hidden border bg-neutral-50">
+            <div className="relative h-48 sm:h-56 md:h-60 lg:h-64">
+              <Image
+                src="/assets/item3.png"
+                alt="Garden cabin"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 20vw, (min-width: 768px) 50vw, 50vw"
+              />
+            </div>
+          </div>
+          <div className="reveal rounded-xl overflow-hidden border bg-neutral-50">
+            <div className="relative h-48 sm:h-56 md:h-60 lg:h-64">
+              <Image
+                src="/assets/item5.png"
+                alt="Modern kitchen shelves"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 20vw, (min-width: 768px) 50vw, 50vw"
+              />
+            </div>
+          </div>
+          <div className="reveal rounded-xl overflow-hidden border bg-neutral-50">
+            <div className="relative h-48 sm:h-56 md:h-60 lg:h-64">
+              <Image
+                src="/assets/item4.png"
+                alt="Loft bedroom"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 20vw, (min-width: 768px) 50vw, 50vw"
+              />
+            </div>
+          </div>
         </div>
 
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map((s) => (
-            <div
-              key={s.label}
-              className="reveal rounded-lg border p-4 text-center"
-            >
-              <div className="text-3xl font-semibold">{s.value}</div>
-              <div className="mt-1 text-xs text-neutral-500">{s.label}</div>
+            <div key={s.label} className="reveal text-center">
+              <div className="text-5xl md:text-6xl tracking-tight">
+                {s.value}
+              </div>
+              <div className="mt-2 text-sm font-medium text-neutral-900">
+                {s.label}
+              </div>
+              {s.note && (
+                <p className="mt-1 text-xs text-neutral-500 max-w-[28ch] mx-auto">
+                  {s.note}
+                </p>
+              )}
             </div>
           ))}
         </div>
@@ -209,10 +264,10 @@ export default function Home() {
       <section id="services" className="bg-neutral-50 py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
-            <span className="reveal text-xs text-neutral-500">Services</span>
-            <h2 className="reveal text-3xl md:text-4xl font-semibold mt-2">
-              What we do
-            </h2>
+            <span className="reveal inline-flex items-center rounded-full bg-black px-3 py-1 text-xs text-white ring-1 ring-black/15">
+              Services
+            </span>
+            <h2 className="reveal text-3xl md:text-4xl mt-2">What we do</h2>
             <p className="reveal text-neutral-600 mt-2">
               Find out which one of our services fits your project needs.
             </p>
@@ -255,7 +310,9 @@ export default function Home() {
       {/* OUR WORK - wide cards */}
       <section id="work" className="mx-auto max-w-6xl px-6 py-20">
         <div className="text-center">
-          <span className="reveal text-xs text-neutral-500">Our work</span>
+          <span className="reveal inline-flex items-center rounded-full bg-black px-3 py-1 text-xs text-white ring-1 ring-black/15">
+            Our work
+          </span>
           <h2 className="reveal text-3xl md:text-4xl font-semibold mt-2">
             Get inspired by our work
           </h2>
@@ -331,7 +388,7 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="bg-neutral-50 py-20">
+      <section id="testimonials" className="bg-neutral-50 py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
             <span className="reveal text-xs text-neutral-500">
@@ -406,7 +463,9 @@ export default function Home() {
       <section id="contact" className="bg-neutral-900 text-white py-20">
         <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-2 gap-10">
           <div>
-            <span className="reveal text-xs text-white/70">Contact</span>
+            <span className="reveal inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs text-white/85 ring-1 ring-white/15">
+              Contact
+            </span>
             <h2 className="reveal text-3xl md:text-4xl font-semibold mt-2">
               Get in touch
             </h2>
@@ -424,15 +483,72 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t py-8 text-sm text-neutral-600">
-        <div className="mx-auto max-w-6xl px-6 flex items-center justify-between">
-          <div>© 2025 LifetimeArt</div>
-          <div className="hidden md:flex gap-6">
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#work">Our work</a>
-            <a href="#faqs">FAQs</a>
-            <a href="#contact">Contact</a>
+      <footer className="bg-neutral-900 text-white">
+        <div className="mx-auto max-w-6xl px-6 py-12">
+          <div className="rounded-2xl ring-1 ring-white/10 p-8 md:p-10">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+              {/* Brand */}
+              <div className="flex items-center gap-3">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white/90">
+                  ✷
+                </span>
+                <span className="text-lg font-semibold">LifetimeArt</span>
+              </div>
+
+              {/* Quick links */}
+              <div className="min-w-[260px]">
+                <div className="text-sm text-white/70">Quick links</div>
+                <div className="mt-3 grid grid-cols-2 gap-8 text-sm">
+                  <ul className="space-y-2">
+                    <li>
+                      <a href="#about" className="opacity-90 hover:opacity-100">
+                        About us
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#work" className="opacity-90 hover:opacity-100">
+                        Our work
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#services"
+                        className="opacity-90 hover:opacity-100"
+                      >
+                        Services
+                      </a>
+                    </li>
+                  </ul>
+                  <ul className="space-y-2">
+                    <li>
+                      <a
+                        href="#testimonials"
+                        className="opacity-90 hover:opacity-100"
+                      >
+                        Testimonials
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#faqs" className="opacity-90 hover:opacity-100">
+                        FAQs
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#contact"
+                        className="opacity-90 hover:opacity-100"
+                      >
+                        Contact
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 border-t border-white/10 pt-6 text-xs text-white/60">
+              © 2025 LifetimeArt. All rights reserved.
+            </div>
           </div>
         </div>
       </footer>
@@ -441,7 +557,11 @@ export default function Home() {
 }
 
 function ContactForm() {
-  async function action(formData: FormData) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
     const res = await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -452,50 +572,61 @@ function ContactForm() {
         message: formData.get("message"),
       }),
     });
-    const data = await res.json();
+
+    const data = await res.json().catch(() => null);
     alert(data?.message ?? "Thanks! We'll be in touch.");
+    form.reset();
   }
 
   return (
     <form
-      className="reveal grid gap-3 bg-white/5 p-5 rounded-lg ring-1 ring-white/15"
-      action={action}
+      className="reveal grid gap-4 bg-white text-neutral-900 p-6 rounded-xl border border-neutral-200 shadow-sm"
+      onSubmit={onSubmit}
     >
-      <label className="text-sm text-white/80">
-        Name
+      <label className="text-sm font-medium text-neutral-800">
+        Name<span className="text-rose-500">*</span>
         <input
           name="name"
           required
-          className="mt-1 w-full rounded-md bg-white/10 px-3 py-2 outline-none focus:ring-2 focus:ring-white/50"
+          placeholder="John Smith"
+          className="mt-1 h-10 w-full rounded-md border border-neutral-200 bg-white px-3 text-[15px] placeholder:text-neutral-400 outline-none focus:border-neutral-400 focus:ring-2 focus:ring-neutral-900/10"
         />
       </label>
-      <label className="text-sm text-white/80">
-        Email
+
+      <label className="text-sm font-medium text-neutral-800">
+        Email<span className="text-rose-500">*</span>
         <input
           type="email"
           name="email"
           required
-          className="mt-1 w-full rounded-md bg-white/10 px-3 py-2 outline-none focus:ring-2 focus:ring-white/50"
+          placeholder="johnsmith@gmail.com"
+          className="mt-1 h-10 w-full rounded-md border border-neutral-200 bg-white px-3 text-[15px] placeholder:text-neutral-400 outline-none focus:border-neutral-400 focus:ring-2 focus:ring-neutral-900/10"
         />
       </label>
-      <label className="text-sm text-white/80">
+
+      <label className="text-sm font-medium text-neutral-800">
         Phone Number
         <input
           name="phone"
-          className="mt-1 w-full rounded-md bg-white/10 px-3 py-2 outline-none focus:ring-2 focus:ring-white/50"
+          placeholder="+44789 123456"
+          className="mt-1 h-10 w-full rounded-md border border-neutral-200 bg-white px-3 text-[15px] placeholder:text-neutral-400 outline-none focus:border-neutral-400 focus:ring-2 focus:ring-neutral-900/10"
         />
       </label>
-      <label className="text-sm text-white/80">
-        Message
+
+      <label className="text-sm font-medium text-neutral-800">
+        Message<span className="text-rose-500">*</span>
         <textarea
           name="message"
           rows={5}
-          className="mt-1 w-full rounded-md bg-white/10 px-3 py-2 outline-none focus:ring-2 focus:ring-white/50"
+          placeholder="Hello, I'd like to enquire about..."
+          className="mt-1 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 text-[15px] placeholder:text-neutral-400 outline-none focus:border-neutral-400 focus:ring-2 focus:ring-neutral-900/10"
+          required
         />
       </label>
+
       <button
         type="submit"
-        className="mt-1 inline-flex items-center justify-center rounded-md bg-white text-neutral-900 px-4 py-2 text-sm font-medium hover:translate-x-0.5 hover:-translate-y-0.5 transition-transform"
+        className="mt-1 h-11 w-full rounded-md bg-neutral-700 text-white text-sm font-medium border border-neutral-600 hover:bg-neutral-600 active:bg-neutral-700 transition-colors"
       >
         Send message
       </button>
