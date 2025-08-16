@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 type Stat = { label: string; value: string; note?: string };
 type Service = { key: string; title: string; icon: string; content: string };
@@ -17,44 +17,44 @@ const services: Service[] = [
   {
     key: "kitchen",
     title: "Kitchens",
-    icon: "/assets/kitchen.svg",
+    icon: "/assets/kitchen-icon.png",
     content:
-      "We design and build tailored kitchens, from sleek modern spaces to classic, timeless looks—crafted with quality materials and optimized for everyday living.",
+      "At LifetimeArt, we design and build stunning kitchens tailored to your style and needs. Whether you're after a sleek modern space or a classic, timeless look, our expert team delivers high-quality craftsmanship, functionality, and attention to detail to create the heart of your home.",
   },
   {
     key: "loft",
     title: "Loft Conversions",
-    icon: "/assets/Loft Conversions.svg",
+    icon: "/assets/loft-icon.png",
     content:
       "Turn unused attic space into beautiful, functional rooms. We handle design, structure, insulation, and finishing for a seamless result.",
   },
   {
     key: "bathroom",
     title: "Bathrooms",
-    icon: "/assets/bathroom.svg",
+    icon: "/assets/bathroom-icon.png",
     content:
       "From compact ensuites to spa-like retreats, we fit high quality fixtures and finishes with precision waterproofing and ventilation.",
   },
   {
     key: "extension",
     title: "Extensions",
-    icon: "/assets/extension.svg",
+    icon: "/assets/extensions-icon.png",
     content:
       "Bright, open extensions that add space and value—built with care, planning guidance, and coordination from start to finish.",
   },
   {
-    key: "external",
-    title: "External Works",
-    icon: "/assets/External Works.svg",
-    content:
-      "From paths and patios to garden structures, we create durable and attractive outdoor improvements.",
-  },
-  {
     key: "restoration",
     title: "Restorations",
-    icon: "/assets/Restoration.svg",
+    icon: "/assets/restorations-icon.png",
     content:
       "Careful restoration work that respects original character while improving longevity and function.",
+  },
+  {
+    key: "external",
+    title: "External Works",
+    icon: "/assets/external-icon.png",
+    content:
+      "From paths and patios to garden structures, we create durable and attractive outdoor improvements.",
   },
 ];
 
@@ -321,19 +321,19 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="mt-12 space-y-8">
+        <div className="mt-12 space-y-10">
           {[
             {
-              img: "/window.svg",
+              img: "/assets/kitchen.png",
               title: "Modern kitchen refit",
               tags: ["Kitchen", "4 weeks"],
-              text: "This kitchen transformation brought sleek design and enhanced functionality with high‑quality finishes and practical layout.",
+              text: "This kitchen transformation brought sleek, modern design and enhanced  functionality to our client’s home. We installed custom cabinetry, high-quality worktops, and state-of-the-art appliances, creating a stylish yet practical space perfect for cooking and entertaining. With attention to every detail, we delivered a kitchen that balances aesthetics and usability.",
               quote:
-                "LifetimeArt completely transformed our kitchen—beautiful and highly functional. Excellent communication throughout.",
+                "LifetimeArt completely transformed our kitchen, making it both beautiful and highly functional. The craftsmanship was outstanding, and the team was professional and communicative throughout. We couldn’t be happier with the result!",
               author: "Rachel Morgan",
             },
             {
-              img: "/file.svg",
+              img: "/assets/garden.png",
               title: "External garden path build",
               tags: ["External Works", "6 weeks"],
               text: "A durable, attractive path and outdoor space. We handled from groundworks to finishing details.",
@@ -353,33 +353,55 @@ export default function Home() {
           ].map((item, i) => (
             <article
               key={i}
-              className="reveal grid md:grid-cols-[1.2fr,2fr] gap-6 rounded-xl overflow-hidden border bg-white"
+              className="reveal rounded-2xl bg-[#E9EEF5] p-4 md:p-6 shadow-sm"
             >
-              <div className="bg-neutral-50">
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  width={640}
-                  height={420}
-                  className="w-full h-auto"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-lg font-semibold">{item.title}</h3>
-                <p className="mt-2 text-sm text-neutral-600">{item.text}</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {item.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full bg-neutral-100 text-neutral-700 px-2.5 py-1 text-xs"
-                    >
-                      {t}
-                    </span>
-                  ))}
+              <div className="grid md:grid-cols-[minmax(320px,520px)_1fr] gap-5 md:gap-8 items-start">
+                {/* Image */}
+                <div className="overflow-hidden rounded-xl bg-neutral-200">
+                  <div className="relative w-full md:h-[360px] lg:h-[420px] aspect-[16/11]">
+                    <Image
+                      src={item.img}
+                      alt={item.title}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width:1024px) 520px, 100vw"
+                    />
+                  </div>
                 </div>
-                <p className="mt-4 text-sm text-neutral-700">“{item.quote}”</p>
-                <div className="mt-2 text-xs text-neutral-500">
-                  — {item.author}
+                {/* Content */}
+                <div className="text-neutral-900">
+                  <h3 className="text-[28px] md:text-3xl font-semibold tracking-tight">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-neutral-700 leading-relaxed max-w-[62ch]">
+                    {item.text}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {item.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full bg-neutral-900 text-white px-3 py-1 text-xs"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  {/* Quote + author */}
+                  <div className="mt-5 space-y-3">
+                    <div className="flex items-start gap-3 text-sm text-neutral-800">
+                      <span className="mt-0.5 text-neutral-500">❝</span>
+                      <p className="leading-relaxed">{item.quote}</p>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-neutral-700">
+                      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-neutral-300 text-[11px] ring-1 ring-black/5">
+                        {item.author
+                          .split(" ")
+                          .map((x) => x[0])
+                          .join("")}
+                      </span>
+                      <span>{item.author}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </article>
