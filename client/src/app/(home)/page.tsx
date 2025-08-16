@@ -5,6 +5,12 @@ import React, { useEffect } from "react";
 
 type Stat = { label: string; value: string; note?: string };
 type Service = { key: string; title: string; icon: string; content: string };
+// Add a map of author -> avatar image in assets
+const authorAvatars: Record<string, string> = {
+  "Rachel Morgan": "/assets/rachel.png",
+  "Michael Turner": "/assets/michael.png",
+  "Laura Davies": "/assets/laura.png",
+};
 
 const stats: Stat[] = [
   { label: "Years experience", value: "8" },
@@ -79,6 +85,34 @@ function useRevealOnScroll() {
 
 export default function Home() {
   useRevealOnScroll();
+
+  // Testimonials content
+  const testimonials = [
+    {
+      name: "Emily Carter",
+      text: "I couldn’t be happier with my loft conversion. The attention to detail and quality of work were outstanding. Refit made the whole process smooth and stress‑free!",
+    },
+    {
+      name: "Emily Carter",
+      text: "Refit transformed our outdoor space with a beautiful garden path. The work was completed on time, and the finish is excellent. A great team to work with!",
+    },
+    {
+      name: "Emily Carter",
+      text: "Brilliant service from start to finish. The team was professional, communicative, and the results exceeded my expectations. My new bathroom looks amazing!",
+    },
+    {
+      name: "Emily Carter",
+      text: "The craftsmanship and communication were top‑notch. Highly recommend!",
+    },
+    {
+      name: "Emily Carter",
+      text: "They listened to my vision and delivered exactly what I wanted—highly recommended!",
+    },
+    {
+      name: "Emily Carter",
+      text: "Superb attention to detail and a friendly team. Would definitely use again.",
+    },
+  ];
   return (
     <main className="min-h-screen bg-white text-neutral-900">
       <section className="bg-neutral-900 text-white">
@@ -336,76 +370,125 @@ export default function Home() {
               img: "/assets/garden.png",
               title: "External garden path build",
               tags: ["External Works", "6 weeks"],
-              text: "A durable, attractive path and outdoor space. We handled from groundworks to finishing details.",
+              text: "Our team designed and built a durable, visually appealing garden path to enhance the outdoor space. Using premium materials, we created a seamless walkway that blends naturally with the landscape, providing both functionality and aesthetic charm. The result is a stylish, well-crafted path that elevates the overall garden design.",
               quote:
-                "The team did an amazing job—looks fantastic and exactly what we wanted.",
+                "The team at LifetimeArt did an amazing job on our garden path. It’s sturdy, looks fantastic, and has completely transformed our outdoor space. They listened to our vision and delivered exactly what we wanted—highly recommended!",
               author: "Michael Turner",
             },
             {
-              img: "/window.svg",
+              img: "/assets/bathroom.png",
               title: "Bathroom renovation",
               tags: ["Bathroom", "4 weeks"],
-              text: "A modern bathroom with clean lines, efficient layout and relaxing atmosphere.",
+              text: "We revitalized this bathroom with a fresh, modern design, incorporating high-end tiling, sleek fixtures, and efficient lighting. The layout was optimized to maximize space, creating a luxurious and relaxing atmosphere. The final result is a beautifully crafted bathroom that enhances both comfort and functionality.",
               quote:
-                "Outstanding craftsmanship—professional and communicative throughout.",
+                "LifetimeArt completely transformed our kitchen, making it both beautiful and highly functional. The craftsmanship was outstanding, and the team was professional and communicative throughout. We couldn’t be happier with the result!",
               author: "Laura Davies",
             },
-          ].map((item, i) => (
-            <article
-              key={i}
-              className="reveal rounded-2xl bg-[#E9EEF5] p-4 md:p-6 shadow-sm"
-            >
-              <div className="grid md:grid-cols-[minmax(320px,520px)_1fr] gap-5 md:gap-8 items-start">
-                {/* Image */}
-                <div className="overflow-hidden rounded-xl bg-neutral-200">
-                  <div className="relative w-full md:h-[360px] lg:h-[420px] aspect-[16/11]">
-                    <Image
-                      src={item.img}
-                      alt={item.title}
-                      fill
-                      className="object-cover"
-                      sizes="(min-width:1024px) 520px, 100vw"
-                    />
+          ].map((item, i) => {
+            const isDark = i === 1; // second card
+            return (
+              <article
+                key={i}
+                className={`reveal rounded-2xl p-4 md:p-6 shadow-sm ${
+                  isDark
+                    ? "bg-neutral-900 text-white ring-1 ring-white/10"
+                    : "bg-[#E9EEF5]"
+                }`}
+              >
+                <div className="grid md:grid-cols-[minmax(320px,520px)_1fr] gap-5 md:gap-8 items-start">
+                  {/* Image */}
+                  <div
+                    className={`overflow-hidden rounded-xl ${
+                      isDark ? "bg-white/5" : "bg-neutral-200"
+                    }`}
+                  >
+                    <div className="relative w-full md:h-[360px] lg:h-[420px] aspect-[16/11]">
+                      <Image
+                        src={item.img}
+                        alt={item.title}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width:1024px) 520px, 100vw"
+                      />
+                    </div>
                   </div>
-                </div>
-                {/* Content */}
-                <div className="text-neutral-900">
-                  <h3 className="text-[28px] md:text-3xl font-semibold tracking-tight">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm text-neutral-700 leading-relaxed max-w-[62ch]">
-                    {item.text}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {item.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-full bg-neutral-900 text-white px-3 py-1 text-xs"
+
+                  {/* Content */}
+                  <div className={isDark ? "text-white" : "text-neutral-900"}>
+                    <h3 className="text-[28px] md:text-3xl font-semibold tracking-tight">
+                      {item.title}
+                    </h3>
+                    <p
+                      className={`mt-3 text-sm leading-relaxed max-w-[62ch] ${
+                        isDark ? "text-white/80" : "text-neutral-700"
+                      }`}
+                    >
+                      {item.text}
+                    </p>
+
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {item.tags.map((t) => (
+                        <span
+                          key={t}
+                          className={`rounded-full px-3 py-1 text-xs ${
+                            isDark
+                              ? "bg-white/10 text-white ring-1 ring-white/10"
+                              : "bg-neutral-900 text-white"
+                          }`}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Quote + author */}
+                    <div className="mt-5 space-y-3">
+                      <div
+                        className={`flex items-start gap-3 text-sm ${
+                          isDark ? "text-white/85" : "text-neutral-800"
+                        }`}
                       >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  {/* Quote + author */}
-                  <div className="mt-5 space-y-3">
-                    <div className="flex items-start gap-3 text-sm text-neutral-800">
-                      <span className="mt-0.5 text-neutral-500">❝</span>
-                      <p className="leading-relaxed">{item.quote}</p>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-neutral-700">
-                      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-neutral-300 text-[11px] ring-1 ring-black/5">
-                        {item.author
-                          .split(" ")
-                          .map((x) => x[0])
-                          .join("")}
-                      </span>
-                      <span>{item.author}</span>
+                        <span
+                          className={
+                            isDark
+                              ? "mt-0.5 text-white/70"
+                              : "mt-0.5 text-neutral-500"
+                          }
+                        >
+                          ❝
+                        </span>
+                        <p className="leading-relaxed">{item.quote}</p>
+                      </div>
+
+                      <div
+                        className={`flex items-center gap-3 text-xs ${
+                          isDark ? "text-white/80" : "text-neutral-700"
+                        }`}
+                      >
+                        {authorAvatars[item.author] ? (
+                          <Image
+                            src={authorAvatars[item.author]}
+                            alt={item.author}
+                            width={40}
+                            height={40}
+                            className="h-10 w-10 rounded-full object-cover shadow-md"
+                          />
+                        ) : (
+                          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-neutral-300 text-[11px] ring-2 ring-white shadow-md">
+                            {item.author
+                              .split(" ")
+                              .map((x) => x[0])
+                              .join("")}
+                          </span>
+                        )}
+                        <span>{item.author}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </section>
 
@@ -413,26 +496,49 @@ export default function Home() {
       <section id="testimonials" className="bg-neutral-50 py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
-            <span className="reveal text-xs text-neutral-500">
+            <span className="reveal inline-flex items-center rounded-full bg-black px-3 py-1 text-xs text-white ring-1 ring-black/15">
               Testimonials
             </span>
             <h2 className="reveal text-3xl md:text-4xl font-semibold mt-2">
               Hear from our clients
             </h2>
           </div>
+
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {[1, 2, 3, 4, 5, 6].map((n) => (
-              <div key={n} className="reveal rounded-xl border bg-white p-5">
-                <div className="text-amber-500">★★★★★</div>
-                <p className="mt-3 text-sm text-neutral-700">
-                  The team were professional, communicative, and the quality of
-                  work outstanding. Highly recommend!
-                </p>
-                <div className="mt-4 text-xs text-neutral-500">
-                  — Happy Client
+            {testimonials.map((t, i) => {
+              const altBg = i % 3 === 1;
+              return (
+                <div
+                  key={i}
+                  className={`reveal rounded-xl p-5 ring-1 ${
+                    altBg
+                      ? "bg-[#E9EEF5] ring-neutral-200"
+                      : "bg-white ring-neutral-200"
+                  }`}
+                >
+                  <div
+                    className="text-neutral-900 text-sm tracking-tight"
+                    role="img"
+                    aria-label="5 out of 5 stars"
+                  >
+                    ★★★★★
+                  </div>
+
+                  <p className="mt-3 text-sm text-neutral-700">{t.text}</p>
+
+                  <div className="mt-4 flex items-center gap-3">
+                    <Image
+                      src="/assets/laura.png"
+                      alt={`${t.name} avatar`}
+                      width={36}
+                      height={36}
+                      className="h-9 w-9 rounded-full object-cover ring-2 ring-white shadow-md"
+                    />
+                    <span className="text-xs text-neutral-600">{t.name}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
