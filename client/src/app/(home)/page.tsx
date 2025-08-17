@@ -114,42 +114,6 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white text-neutral-900">
       <section className="relative bg-neutral-900 text-white">
-        {/* Header (overlay on top of hero) */}
-        <div className="absolute inset-x-0 top-0 z-20">
-          <div className="mx-auto max-w-[1060px] px-6 py-5 flex items-center justify-between">
-            <div className="reveal" data-show>
-              <p className="inline-flex items-center">
-                <Image
-                  src="/assets/Logo.svg"
-                  alt="LifetimeArt logo"
-                  width={150}
-                  height={28}
-                  priority
-                  className="h-7 mr-2 w-auto"
-                />
-                LifetimeArt
-              </p>
-            </div>
-            <nav className="hidden md:flex gap-6 text-sm">
-              {[
-                ["About", "#about"],
-                ["Services", "#services"],
-                ["Our work", "#work"],
-                ["FAQs", "#faqs"],
-                ["Contact", "#contact"],
-              ].map(([label, href]) => (
-                <a
-                  key={label}
-                  href={href}
-                  className="underline-hover text-white/80 hover:text-white"
-                >
-                  {label}
-                </a>
-              ))}
-            </nav>
-          </div>
-        </div>
-
         {/* Hero */}
         <div className="mx-auto max-w-[1060px] px-6 grid md:grid-cols-2 gap-12 pt-24 md:pt-28 pb-16 md:pb-24 items-center">
           <div className="space-y-8">
@@ -192,24 +156,40 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Lift the image up so it reaches the very top behind the navbar */}
+          {/* Image column with overlaid navbar */}
           <div className="reveal md:justify-self-end -mt-24 md:-mt-28">
-            <div className="relative rounded-lg ring-white/15 p-6">
+            <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/15 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+              {/* Top gradient for readability */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-black/35 to-transparent z-10" />
+              {/* Nav centered over the image (md+) */}
+              <nav className="absolute top-4 left-6 right-6 z-20 hidden md:flex items-center justify-center gap-10 text-[15px]">
+                {[
+                  ["About", "#about"],
+                  ["Services", "#services"],
+                  ["Our work", "#work"],
+                  ["FAQs", "#faqs"],
+                  ["Contact", "#contact"],
+                ].map(([label, href]) => (
+                  <a
+                    key={label}
+                    href={href}
+                    className="text-white/90 hover:text-white transition-colors"
+                  >
+                    {label}
+                  </a>
+                ))}
+              </nav>
               <Image
                 src="/assets/Image.svg"
                 alt="Home interior"
                 width={520}
                 height={420}
                 className="h-auto w-full"
+                priority
               />
             </div>
           </div>
         </div>
-
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/30 to-transparent z-10"
-        />
       </section>
 
       {/* ABOUT */}
