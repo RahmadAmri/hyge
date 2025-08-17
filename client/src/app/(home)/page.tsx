@@ -85,7 +85,6 @@ function useRevealOnScroll() {
 export default function Home() {
   useRevealOnScroll();
 
-  // Testimonials content
   const testimonials = [
     {
       name: "Emily Carter",
@@ -114,44 +113,45 @@ export default function Home() {
   ];
   return (
     <main className="min-h-screen bg-white text-neutral-900">
-      <section className="bg-neutral-900 text-white">
-        {/* Header */}
-        <div className="mx-auto max-w-[1060px] px-6 py-5 flex items-center justify-between">
-          <div className="reveal" data-show>
-            <p className="inline-flex items-center">
-              <Image
-                src="/assets/Logo.svg"
-                alt="LifetimeArt logo"
-                width={150}
-                height={28}
-                priority
-                className="h-7 mr-2 w-auto"
-              />
-              LifetimeArt
-            </p>
+      <section className="relative bg-neutral-900 text-white">
+        {/* Header (overlay on top of hero) */}
+        <div className="absolute inset-x-0 top-0 z-20">
+          <div className="mx-auto max-w-[1060px] px-6 py-5 flex items-center justify-between">
+            <div className="reveal" data-show>
+              <p className="inline-flex items-center">
+                <Image
+                  src="/assets/Logo.svg"
+                  alt="LifetimeArt logo"
+                  width={150}
+                  height={28}
+                  priority
+                  className="h-7 mr-2 w-auto"
+                />
+                LifetimeArt
+              </p>
+            </div>
+            <nav className="hidden md:flex gap-6 text-sm">
+              {[
+                ["About", "#about"],
+                ["Services", "#services"],
+                ["Our work", "#work"],
+                ["FAQs", "#faqs"],
+                ["Contact", "#contact"],
+              ].map(([label, href]) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="underline-hover text-white/80 hover:text-white"
+                >
+                  {label}
+                </a>
+              ))}
+            </nav>
           </div>
-
-          <nav className="hidden md:flex gap-6 text-sm">
-            {[
-              ["About", "#about"],
-              ["Services", "#services"],
-              ["Our work", "#work"],
-              ["FAQs", "#faqs"],
-              ["Contact", "#contact"],
-            ].map(([label, href]) => (
-              <a
-                key={label}
-                href={href}
-                className="underline-hover text-white/80 hover:text-white"
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
         </div>
 
         {/* Hero */}
-        <div className="mx-auto max-w-[1060px] px-6 grid md:grid-cols-2 gap-12 py-16 md:py-24 items-center">
+        <div className="mx-auto max-w-[1060px] px-6 grid md:grid-cols-2 gap-12 pt-24 md:pt-28 pb-16 md:pb-24 items-center">
           <div className="space-y-8">
             <span className="reveal inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-white/15 px-3 py-1 text-xs text-white/85">
               <span className="size-2 rounded-full bg-white ring-2 ring-black/30" />
@@ -192,19 +192,24 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="reveal md:justify-self-end">
+          {/* Lift the image up so it reaches the very top behind the navbar */}
+          <div className="reveal md:justify-self-end -mt-24 md:-mt-28">
             <div className="relative rounded-lg ring-white/15 p-6">
               <Image
-                src="/assets/image.svg"
+                src="/assets/Image.svg"
                 alt="Home interior"
                 width={520}
                 height={420}
                 className="h-auto w-full"
-                priority
               />
             </div>
           </div>
         </div>
+
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/30 to-transparent z-10"
+        />
       </section>
 
       {/* ABOUT */}
@@ -293,12 +298,10 @@ export default function Home() {
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map((s) => (
             <div key={s.label} className="reveal text-center">
-              <div className="text-5xl md:text-6xl tracking-tight">
+              <div className="text-4xl md:text-5xl tracking-tight">
                 {s.value}
               </div>
-              <div className="mt-2 text-sm font-medium text-neutral-900">
-                {s.label}
-              </div>
+              <div className="mt-2 text-sm font-medium">{s.label}</div>
               {s.note && (
                 <p className="mt-1 text-xs text-neutral-500 max-w-[28ch] mx-auto">
                   {s.note}
@@ -567,7 +570,7 @@ export default function Home() {
         <div className="grid gap-10 md:grid-cols-2">
           {/* Left intro */}
           <div>
-            <span className="reveal inline-flex items-center rounded-full bg-neutral-200 px-3 py-1 text-xs text-neutral-900 ring-1 ring-black/10">
+            <span className="reveal inline-flex items-center rounded-full bg-black px-3 py-1 text-xs text-white ring-1 ring-black/15">
               FAQs
             </span>
             <h2 className="reveal mt-3 text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight">
@@ -588,7 +591,7 @@ export default function Home() {
                   alt=""
                   width={18}
                   height={18}
-                  className="invert"
+                  className="invert h-8 w-8"
                   priority
                 />
               </span>
@@ -600,27 +603,31 @@ export default function Home() {
             {[
               [
                 "What area are you based in?",
-                "We primarily serve London and surrounding areas, but depending on the project, we may be able to travel further. Get in touch to discuss your location and project needs.",
+                "We primarily serve London and the surrounding areas, but depending on the project, we can travel further. Contact us to discuss your location and requirements.",
               ],
               [
                 "How long does a typical project take?",
-                "Timelines vary by scope, but we’ll give you a clear schedule before we begin and keep you updated throughout.",
+                " Project timelines vary depending on size and complexity. We’ll provide an estimated schedule during your consultation and keep you updated throughout the process.",
               ],
               [
                 "Do you offer free quotes?",
-                "Yes. Book a visit and we’ll provide a detailed quote free of charge.",
+                "Yes, we offer free, no-obligation quotes. Our team will visit your property, assess your needs, and provide a detailed breakdown.",
               ],
               [
                 "Will I need planning permission for my project?",
-                "Some projects do. We can advise what’s needed and support with applications if required.",
+                "This depends on the type and scope of your project. We can guide you through local regulations and help with applications if needed.",
               ],
               [
                 "Do you provide a guarantee for your work?",
-                "Yes, our work comes with a workmanship guarantee. Specifics depend on the project and materials.",
+                "Absolutely. All of our work is backed by a guarantee for quality and durability, giving you peace of mind.",
+              ],
+              [
+                "Can I stay in my home while the work is being done?",
+                "In most cases, yes—though it may depend on the scope of work and areas affected. We’ll discuss options to minimise disruption.",
               ],
               [
                 "How do I get started with a project?",
-                "Send us an enquiry with your ideas. We’ll schedule a visit, discuss options, and provide a tailored quote.",
+                "Simply get in touch with our team. We’ll arrange a consultation, discuss your ideas, and prepare a tailored plan and quote.",
               ],
             ].map(([q, a], i) => (
               <details
@@ -652,7 +659,7 @@ export default function Home() {
             <span className="reveal inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs text-white font-semibold ring-1 ring-white/15">
               Contact
             </span>
-            <h2 className="reveal  text-3xl md:text-4xl font-semibold mt-3">
+            <h2 className="reveal text-3xl md:text-4xl font-semibold mt-3">
               Get in touch
             </h2>
             <p className="reveal text-white/70 mt-2 max-w-prose">
