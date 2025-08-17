@@ -5,7 +5,6 @@ import React, { useEffect } from "react";
 
 type Stat = { label: string; value: string; note?: string };
 type Service = { key: string; title: string; icon: string; content: string };
-// Add a map of author -> avatar image in assets
 const authorAvatars: Record<string, string> = {
   "Rachel Morgan": "/assets/rachel.png",
   "Michael Turner": "/assets/michael.png",
@@ -25,42 +24,42 @@ const services: Service[] = [
     title: "Kitchens",
     icon: "/assets/kitchen-icon.png",
     content:
-      "At LifetimeArt, we design and build stunning kitchens tailored to your style and needs. Whether you're after a sleek modern space or a classic, timeless look, our expert team delivers high-quality craftsmanship, functionality, and attention to detail to create the heart of your home.",
+      "At LifetimeArt, we design and build stunning kitchens tailored to your style and needs. Whether you prefer sleek modern lines or a timeless, classic look, our team delivers premium craftsmanship, functional layouts, and meticulous attention to detail—creating a kitchen you’ll love to cook and gather in",
   },
   {
     key: "loft",
     title: "Loft Conversions",
     icon: "/assets/loft-icon.png",
     content:
-      "Turn unused attic space into beautiful, functional rooms. We handle design, structure, insulation, and finishing for a seamless result.",
+      "Transform unused loft space into a beautiful, practical part of your home. From cozy bedrooms to bright home offices, we handle everything from structural adjustments to finishing touches, ensuring your new space is safe, stylish, and seamlessly integrated with your existing home.",
   },
   {
     key: "bathroom",
     title: "Bathrooms",
     icon: "/assets/bathroom-icon.png",
     content:
-      "From compact ensuites to spa-like retreats, we fit high quality fixtures and finishes with precision waterproofing and ventilation.",
+      "We create bathrooms that balance relaxation and practicality, with designs ranging from spa-inspired retreats to minimalist, functional spaces. Our team sources high-quality fixtures and finishes, ensuring durability, elegance, and comfort for years to come.",
   },
   {
     key: "extension",
     title: "Extensions",
     icon: "/assets/extensions-icon.png",
     content:
-      "Bright, open extensions that add space and value—built with care, planning guidance, and coordination from start to finish.",
+      " Expand your living space without compromising on style. Whether it’s a kitchen extension, a new family room, or an entire additional floor, we work closely with you to design and build an extension that complements your home and adds value.",
   },
   {
     key: "restoration",
     title: "Restorations",
     icon: "/assets/restorations-icon.png",
     content:
-      "Careful restoration work that respects original character while improving longevity and function.",
+      "Preserve the charm of your property while upgrading it for modern living. Our restoration work combines traditional craftsmanship with modern techniques to breathe new life into historic or worn-down spaces.",
   },
   {
     key: "external",
     title: "External Works",
     icon: "/assets/external-icon.png",
     content:
-      "From paths and patios to garden structures, we create durable and attractive outdoor improvements.",
+      "Enhance the beauty and functionality of your outdoor areas. From garden landscaping to patios, pathways, and exterior lighting, we create inviting spaces that connect your home to nature.",
   },
 ];
 
@@ -98,11 +97,11 @@ export default function Home() {
     },
     {
       name: "Emily Carter",
-      text: "Brilliant service from start to finish. The team was professional, communicative, and the results exceeded my expectations. My new bathroom looks amazing!",
+      text: "I couldn’t be happier with my loft conversion. The attention to detail and quality of work were outstanding. Refit made the whole process smooth and stress‑free!",
     },
     {
       name: "Emily Carter",
-      text: "The craftsmanship and communication were top‑notch. Highly recommend!",
+      text: "I couldn’t be happier with my loft conversion. The attention to detail and quality of work were outstanding. Refit made the whole process smooth and stress‑free!",
     },
     {
       name: "Emily Carter",
@@ -119,14 +118,17 @@ export default function Home() {
         {/* Header */}
         <div className="mx-auto max-w-[1060px] px-6 py-5 flex items-center justify-between">
           <div className="reveal" data-show>
-            <span className="inline-flex items-center rounded-full bg-white/5 ring-1 ring-white/10 px-2.5 py-1">
-              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/10 text-white/90">
-                ✷
-              </span>
-              <span className="ml-2 text-sm font-medium tracking-wide">
-                LifetimeArt
-              </span>
-            </span>
+            <p className="inline-flex items-center">
+              <Image
+                src="/assets/Logo.svg"
+                alt="LifetimeArt logo"
+                width={150}
+                height={28}
+                priority
+                className="h-7 mr-2 w-auto"
+              />
+              LifetimeArt
+            </p>
           </div>
 
           <nav className="hidden md:flex gap-6 text-sm">
@@ -176,21 +178,28 @@ export default function Home() {
                 className="group inline-flex items-center gap-4 rounded-full bg-white/10 ring-1 ring-white/15 px-4 py-2 md:px-6 md:py-3 text-sm md:text-base text-white hover:bg-white/15 transition-colors"
               >
                 <span className="font-medium">Work with us</span>
-                <span className="inline-flex items-center justify-center rounded-full bg-white text-neutral-900 size-9 md:size-10 shadow-sm transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                  ↗
+                <span className="inline-flex items-center justify-center rounded-full bg-white size-9 md:size-10 shadow-sm overflow-hidden transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                  <Image
+                    src="/assets/Arrow.png"
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="w-10 h-10"
+                    priority
+                  />
                 </span>
               </a>
             </div>
           </div>
 
           <div className="reveal md:justify-self-end">
-            <div className="relative rounded-lg overflow-hidden ring-1 ring-white/15 bg-white/5 p-6">
+            <div className="relative rounded-lg ring-white/15 p-6">
               <Image
                 src="/assets/image.svg"
                 alt="Home interior"
                 width={520}
                 height={420}
-                className="h-auto w-full max-w-[520px]"
+                className="h-auto w-full"
                 priority
               />
             </div>
@@ -202,17 +211,23 @@ export default function Home() {
       <section id="about" className="mx-auto max-w-6xl px-6 py-20">
         <div className="grid md:grid-cols-2 gap-10 items-start">
           <div>
-            <span className="reveal text-xs text-neutral-500">About us</span>
-            <h2 className="reveal text-3xl md:text-4xl font-semibold mt-2">
-              Home Improvement Specialists
+            <span className="reveal inline-flex items-center rounded-full bg-black px-3 py-1 text-xs text-white ring-1 ring-black/15">
+              About us
+            </span>
+            <h2 className="reveal mt-2 text-[40px] sm:text-5xl md:text-6xl lg:text-5xl leading-[0.95] tracking-tight">
+              <span className="block">Home</span>
+              <span className="block">Improvement</span>
+              <span className="block">Specialists</span>
             </h2>
           </div>
           <p className="reveal text-neutral-600 leading-relaxed">
-            Welcome to LifetimeArt, your trusted home improvement experts,
+            Welcome to LifetimeArt , your trusted home improvement experts,
             dedicated to transforming homes with precision and care. With years
             of experience in building kitchens, bathrooms, garages, and more, we
-            pride ourselves on delivering top‑quality craftsmanship and a
-            seamless customer experience.
+            take pride in delivering top-quality craftsmanship and a seamless
+            customer experience. Our mission is to bring your vision to life
+            while ensuring clear communication and expert guidance at every
+            step. Let’s create a home you’ll love!
           </p>
         </div>
 
@@ -347,7 +362,7 @@ export default function Home() {
           <span className="reveal inline-flex items-center rounded-full bg-black px-3 py-1 text-xs text-white ring-1 ring-black/15">
             Our work
           </span>
-          <h2 className="reveal text-3xl md:text-4xl font-semibold mt-2">
+          <h2 className="reveal text-3xl md:text-4xl mt-2">
             Get inspired by our work
           </h2>
           <p className="reveal text-neutral-600 mt-2">
@@ -385,7 +400,7 @@ export default function Home() {
               author: "Laura Davies",
             },
           ].map((item, i) => {
-            const isDark = i === 1; // second card
+            const isDark = i === 1;
             return (
               <article
                 key={i}
@@ -415,7 +430,7 @@ export default function Home() {
 
                   {/* Content */}
                   <div className={isDark ? "text-white" : "text-neutral-900"}>
-                    <h3 className="text-[28px] md:text-3xl font-semibold tracking-tight">
+                    <h3 className="text-[28px] md:text-3xl tracking-tight">
                       {item.title}
                     </h3>
                     <p
@@ -494,6 +509,7 @@ export default function Home() {
 
       {/* TESTIMONIALS */}
       <section id="testimonials" className="bg-neutral-50 py-20">
+        {/* Header remains constrained */}
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
             <span className="reveal inline-flex items-center rounded-full bg-black px-3 py-1 text-xs text-white ring-1 ring-black/15">
@@ -503,8 +519,11 @@ export default function Home() {
               Hear from our clients
             </h2>
           </div>
+        </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+        {/* Full‑bleed grid to screen edges */}
+        <div className="mt-10 w-screen relative left-1/2 right-1/2 -mx-[50vw] px-4 sm:px-6">
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
             {testimonials.map((t, i) => {
               const altBg = i % 3 === 1;
               return (
@@ -528,7 +547,7 @@ export default function Home() {
 
                   <div className="mt-4 flex items-center gap-3">
                     <Image
-                      src="/assets/laura.png"
+                      src="/assets/rachel.png"
                       alt={`${t.name} avatar`}
                       width={36}
                       height={36}
@@ -545,43 +564,82 @@ export default function Home() {
 
       {/* FAQ + CONTACT */}
       <section id="faqs" className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid md:grid-cols-2 gap-10">
+        <div className="grid gap-10 md:grid-cols-2">
+          {/* Left intro */}
           <div>
-            <span className="reveal text-xs text-neutral-500">FAQs</span>
-            <h2 className="reveal text-3xl md:text-4xl font-semibold mt-2">
-              Answering Your Questions
+            <span className="reveal inline-flex items-center rounded-full bg-neutral-200 px-3 py-1 text-xs text-neutral-900 ring-1 ring-black/10">
+              FAQs
+            </span>
+            <h2 className="reveal mt-3 text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight">
+              Answering Your
+              <br /> Questions
             </h2>
-            <p className="reveal text-neutral-600 mt-2">
-              Got more questions? Send us your enquiry below.
+            <p className="reveal mt-4 text-neutral-600 max-w-[36ch]">
+              Got more questions? Send us your enquiry below
             </p>
             <a
               href="#contact"
-              className="reveal inline-block mt-6 rounded-md border px-4 py-2 text-sm"
+              className="reveal mt-8 inline-flex items-center gap-4 rounded-full bg-neutral-100 px-4 py-2 text-sm text-neutral-900 ring-1 ring-black/10 hover:bg-neutral-200 transition"
             >
-              Get in touch →
+              <span className="font-medium">Get in touch</span>
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900 shadow-sm">
+                <Image
+                  src="/assets/Arrow.png"
+                  alt=""
+                  width={18}
+                  height={18}
+                  className="invert"
+                  priority
+                />
+              </span>
             </a>
           </div>
 
-          <div className="space-y-3">
+          {/* Right list */}
+          <div className="space-y-4">
             {[
               [
                 "What area are you based in?",
-                "We primarily serve London and surrounding areas. Depending on the project, we may be able to travel further—get in touch to discuss.",
+                "We primarily serve London and surrounding areas, but depending on the project, we may be able to travel further. Get in touch to discuss your location and project needs.",
               ],
               [
                 "How long does a typical project take?",
-                "Timelines vary by scope, but we provide a clear schedule before we begin and keep you updated.",
+                "Timelines vary by scope, but we’ll give you a clear schedule before we begin and keep you updated throughout.",
               ],
               [
                 "Do you offer free quotes?",
-                "Yes—book a visit and we’ll provide a detailed quote free of charge.",
+                "Yes. Book a visit and we’ll provide a detailed quote free of charge.",
+              ],
+              [
+                "Will I need planning permission for my project?",
+                "Some projects do. We can advise what’s needed and support with applications if required.",
+              ],
+              [
+                "Do you provide a guarantee for your work?",
+                "Yes, our work comes with a workmanship guarantee. Specifics depend on the project and materials.",
+              ],
+              [
+                "How do I get started with a project?",
+                "Send us an enquiry with your ideas. We’ll schedule a visit, discuss options, and provide a tailored quote.",
               ],
             ].map(([q, a], i) => (
-              <details key={i} className="reveal rounded-lg border p-4">
-                <summary className="cursor-pointer list-none font-medium">
-                  {q}
+              <details
+                key={i}
+                open={i === 0}
+                className="reveal group rounded-2xl bg-neutral-50 p-4 md:p-5 ring-1 ring-neutral-200 open:ring-neutral-300"
+              >
+                <summary className="flex cursor-pointer list-none items-center gap-3 text-[17px] md:text-lg font-medium text-neutral-900">
+                  <span className="flex-1">{q}</span>
+                  <span className="ml-4 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white ring-1 ring-neutral-200 text-neutral-400 group-open:hidden">
+                    +
+                  </span>
+                  <span className="ml-4 hidden h-6 w-6 items-center justify-center rounded-full bg-white ring-1 ring-neutral-200 text-neutral-400 group-open:inline-flex">
+                    ×
+                  </span>
                 </summary>
-                <p className="mt-2 text-sm text-neutral-600">{a}</p>
+                <p className="mt-3 text-sm leading-relaxed text-neutral-600">
+                  {a}
+                </p>
               </details>
             ))}
           </div>
@@ -591,21 +649,104 @@ export default function Home() {
       <section id="contact" className="bg-neutral-900 text-white py-20">
         <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-2 gap-10">
           <div>
-            <span className="reveal inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs text-white/85 ring-1 ring-white/15">
+            <span className="reveal inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs text-white font-semibold ring-1 ring-white/15">
               Contact
             </span>
-            <h2 className="reveal text-3xl md:text-4xl font-semibold mt-2">
+            <h2 className="reveal  text-3xl md:text-4xl font-semibold mt-3">
               Get in touch
             </h2>
             <p className="reveal text-white/70 mt-2 max-w-prose">
-              For enquiries or to explore your vision further, contact our team
-              using the details or form.
+              For any inquiries or to explore your vision further, we invite you
+              to contact our professional team using the details provided below.
             </p>
-            <ul className="mt-6 space-y-2 text-sm text-white/80">
-              <li>Office: 150 Old Park Ln, London W1K 1QZ</li>
-              <li>Email: hello@refit.com</li>
-              <li>Telephone: 07716 534 984</li>
+            <ul className="mt-6 space-y-2 text-sm">
+              <li>Office 150 Old Park Ln, London W1K 1QZ</li>
+              <li>Email hello@refit.com</li>
+              <li>Telephone 07716 534 984</li>
             </ul>
+
+            {/* Follow us (moved here under Telephone) */}
+            <div className="mt-6 pt-6 border-t border-white/10">
+              <div className="text-sm text-white">Follow us</div>
+              <div className="mt-3 flex items-center gap-5">
+                {/* Instagram */}
+                <a
+                  href="https://instagram.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="text-white/90 hover:text-white"
+                >
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="5"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                    />
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="4"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                    />
+                    <circle cx="17.5" cy="6.5" r="1.4" fill="currentColor" />
+                  </svg>
+                </a>
+                {/* TikTok */}
+                <a
+                  href="https://tiktok.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="TikTok"
+                  className="text-white/90 hover:text-white"
+                >
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M14.5 3c.6 2.2 2.1 3.9 4.5 4.3v3.1c-1.8.1-3.4-.5-4.5-1.5v6.1c0 3-2.4 5.5-5.5 5.5S3.5 18.9 3.5 15.8 5.9 10.3 9 10.3c.7 0 1.4.1 2 .3v3.2c-.6-.3-1.2-.4-2-.4-1.6 0-2.9 1.3-2.9 2.9s1.3 2.9 2.9 2.9 2.9-1.3 2.9-2.9V3h2.6Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </a>
+                {/* X */}
+                <a
+                  href="https://x.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="X"
+                  className="text-white/90 hover:text-white"
+                >
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 4h3.1l5 6.7L15.8 4H20l-6.2 8.4L20 20h-3.1l-5.3-7.1L8.2 20H4l6.5-8.7L4 4Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
           <ContactForm />
         </div>
@@ -615,17 +756,22 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6 py-12">
           <div className="rounded-2xl ring-1 ring-white/10 p-8 md:p-10">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
-              {/* Brand */}
-              <div className="flex items-center gap-3">
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white/90">
-                  ✷
-                </span>
-                <span className="text-lg font-semibold">LifetimeArt</span>
+              <div className="reveal" data-show>
+                <p className="inline-flex items-center">
+                  <Image
+                    src="/assets/Logo.svg"
+                    alt="LifetimeArt logo"
+                    width={150}
+                    height={28}
+                    priority
+                    className="h-7 mr-2 w-auto"
+                  />
+                  LifetimeArt
+                </p>
               </div>
-
-              {/* Quick links */}
+              {/* Quick links (right) */}
               <div className="min-w-[260px]">
-                <div className="text-sm text-white/70">Quick links</div>
+                <div className="text-2xl text-white">Quick links</div>
                 <div className="mt-3 grid grid-cols-2 gap-8 text-sm">
                   <ul className="space-y-2">
                     <li>
@@ -674,7 +820,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-8 border-t border-white/10 pt-6 text-xs text-white/60">
+            <div className="mt-8 border-t border-white/10 pt-6 text-xs text-white">
               © 2025 LifetimeArt. All rights reserved.
             </div>
           </div>
