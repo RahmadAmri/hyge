@@ -232,7 +232,7 @@ export default function Home() {
           <div className="reveal rounded-xl overflow-hidden border bg-neutral-50">
             <div className="relative h-48 sm:h-56 md:h-60 lg:h-64">
               <Image
-                src="/assets/item3.jpg"
+                src="/assets/item2.jpg"
                 alt="Cozy armchair"
                 fill
                 className="object-cover"
